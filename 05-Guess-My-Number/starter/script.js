@@ -16,28 +16,33 @@ document.querySelector(".guess").value = 23;
 const number = Math.ceil(Math.random()*20);
 let score = 20;
 console.log(number);
-document.querySelector('.check').addEventListener('click', () => {
-    
+document.querySelector('.check').addEventListener('click', checkNumber);
+document.addEventListener('keydown', (e) => {
+    if (e.code === "Enter"){
+        checkNumber()   
+    }
+});
+
+function checkNumber(){
     const guessNumber = Number(document.querySelector(".guess").value);
     
     if(guessNumber === 0){
         document.querySelector(".message").textContent = "⛔️ No Number";
     } else if (guessNumber === number) {
-        document.querySelector(".message").textContent = "correct";
+        document.querySelector(".message").textContent = "🎉 Correct";
         document.querySelector(".highscore").textContent = score;
         
         document.querySelector(".number").textContent = number;
         document.querySelector(".number").style.width = "25rem";
         document.querySelector("body").style.backgroundColor = "green";
-
     } 
     else if (guessNumber > number) {
-        document.querySelector(".message").textContent = "too high";
+        document.querySelector(".message").textContent = "📈 too high";
         score--;
         document.querySelector(".score").textContent = score;
     } else if (guessNumber < number) {
-        document.querySelector(".message").textContent = "too low";
+        document.querySelector(".message").textContent = "📉 too low";
         score--;
         document.querySelector(".score").textContent = score;
     }
-})
+}
