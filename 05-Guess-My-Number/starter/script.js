@@ -42,18 +42,14 @@ function checkNumber() {
         score--;
         document.querySelector(".score").textContent = score;
         displayMessage("📈 Too high !!");
-        guessArr(guessNumber);
+        guessArray.push(guessNumber);
     } else if (guessNumber < number && !guessArray.includes(guessNumber)) {
         score--;
         document.querySelector(".score").textContent = score;
         displayMessage("📉 Too low !!");
-        guessArr(guessNumber);
+        guessArray.push(guessNumber);
     } else if (guessArray.includes(guessNumber)) {
         displayMessage("Same number !!");
     }
     console.log(guessArray);
-}
-
-function guessArr(number){
-        guessArray.push(number);
 }
