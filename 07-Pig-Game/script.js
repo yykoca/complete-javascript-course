@@ -24,6 +24,8 @@ function init() {
     currentPlayer = P0;
     score = [0, 0];
     playing = true;
+    P0.innerText = currentScore;
+    P1.innerText = currentScore;
     P0totalScore.innerText = score[0];
     P1totalScore.innerText = score[1];
     imgDice.setAttribute('hidden', true);
@@ -45,7 +47,7 @@ function rollDice() {
     if (playing) {
         const randomNumber = Math.trunc(Math.random() * 6) + 1; // Math.ceil(Math.random()*6);
         imgDice.removeAttribute('hidden'); // imgDice.style.visibility = "visible";
-        imgDice.src = `dice-${randomNumber}.png`;
+        imgDice.src = `./imgs/dice-${randomNumber}.png`;
         if (randomNumber === 1) {
             switchPlayer()
         } else {
@@ -68,7 +70,7 @@ function holdScore() {
         if (currentPlayer == P0) {
             score[0] += currentScore;
             P0totalScore.innerText = score[0];
-            if (score[0] >= 100) {
+            if (score[0] >= 10) {
                 P0Section.classList.add('player--winner');
                 P1Section.classList.remove('player--active');
                 playing = false;
@@ -78,7 +80,7 @@ function holdScore() {
         if (currentPlayer == P1) {
             score[1] += currentScore;
             P1totalScore.innerText = score[1];
-            if (score[1] >= 100) {
+            if (score[1] >= 10) {
                 P1Section.classList.add('player--winner');
                 playing = false;
                 return;
